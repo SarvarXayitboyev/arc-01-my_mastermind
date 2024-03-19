@@ -1,12 +1,13 @@
-CC = gcc
-CFGC = -g -Wall -Wextra -Werror
-SOURCE = my_mastermind.c
-TARGET = my_mastermind
+CC=gcc
+CFLAGS=-Wall -Wextra -std=c99 -pedantic
 
-$(TARGET):$(SOURCE)
-	$(CC) $(CFGC) -o $@ $^
+all: mastermind
 
-.PHONY:fclean
+mastermind: mastermind.o
+	$(CC) $(CFLAGS) -o $@ $^
 
-fclean:
-	@rm -r $(TARGET)
+mastermind.o: mastermind.c
+	$(CC) $(CFLAGS) -c $<
+
+clean:
+	rm -f mastermind mastermind.o
